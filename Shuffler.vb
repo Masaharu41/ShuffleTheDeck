@@ -45,11 +45,52 @@ Module Shuffler
                 If temp(row, column) Then
                     math = (column * 13) + (row + 1)
                     If math <= 13 Then
-
-                        Console.Write($"{math}".PadLeft(4))
-                    ElseIf 13 < math > 27 Then
-                        antiMath = math - (column + 1)
-
+                        Select Case math
+                            Case 11
+                                Console.Write("J".PadLeft(4))
+                            Case 12
+                                Console.Write("Q".PadLeft(4))
+                            Case 13
+                                Console.Write("K".PadLeft(4))
+                            Case Else
+                                Console.Write($"{math}".PadLeft(4))
+                        End Select
+                    ElseIf 13 > math < 27 Then
+                        antiMath = math - (column * 13)
+                        Select Case antiMath
+                            Case 11
+                                Console.Write("J".PadLeft(4))
+                            Case 12
+                                Console.Write("Q".PadLeft(4))
+                            Case 13
+                                Console.Write("K".PadLeft(4))
+                            Case Else
+                                Console.Write($"{antiMath}".PadLeft(4))
+                        End Select
+                    ElseIf 27 > math < 40 Then
+                        antiMath = math - (column * 13)
+                        Select Case antiMath
+                            Case 11
+                                Console.Write("J".PadLeft(4))
+                            Case 12
+                                Console.Write("Q".PadLeft(4))
+                            Case 13
+                                Console.Write("K".PadLeft(4))
+                            Case Else
+                                Console.Write($"{antiMath}".PadLeft(4))
+                        End Select
+                    ElseIf 40 > math < 52 Then
+                        antiMath = math - (column * 13)
+                        Select Case antiMath
+                            Case 11
+                                Console.Write("J".PadLeft(4))
+                            Case 12
+                                Console.Write("Q".PadLeft(4))
+                            Case 13
+                                Console.Write("K".PadLeft(4))
+                            Case Else
+                                Console.Write($"{antiMath}".PadLeft(4))
+                        End Select
                     End If
                 Else
                         Console.Write("X".PadLeft(4))

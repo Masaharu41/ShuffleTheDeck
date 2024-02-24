@@ -6,6 +6,7 @@
 
 Option Explicit On
 Option Strict On
+Option Compare Text
 Module ShuffleTheDeck
 
     'TODO
@@ -37,8 +38,7 @@ Module ShuffleTheDeck
             Else
                 If cardsDrawn >= 52 Then
                     message = "All balls have been drawn"
-                    Exit Do
-
+                    Shuffler.NewGame(tracker)
                 Else
                     Shuffler.DrawCard(tracker)
                     cardsDrawn += 1
