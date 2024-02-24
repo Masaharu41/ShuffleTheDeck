@@ -1,20 +1,22 @@
-﻿Module Shuffler
+﻿Imports System.Diagnostics.Tracing
+
+Module Shuffler
     Sub NewGame(ByRef tracker(,) As Boolean)
         Console.Clear()
-        ReDim tracker(14, 4)
+        ReDim tracker(12, 3)
     End Sub
 
-    Sub DrawBall(ByRef tracker(,) As Boolean)
-        Dim currentLetter%, currentNumber%
+    Sub DrawCard(ByRef tracker(,) As Boolean)
+        Dim currentSuit%, currentNumber%
         ' loop until we get a ball that has not been drawn yet
         ' update tracker marking the ball
         Do
             ' potential endless loop here
-            currentNumber = RandomNumberZero(14)
-            currentLetter = RandomNumberZero(4)
-        Loop While tracker(currentNumber, currentLetter)
+            currentNumber = RandomNumberZero(12)
+            currentSuit = RandomNumberZero(3)
+        Loop While tracker(currentNumber, currentSuit)
 
-        tracker(currentNumber, currentLetter) = True
+        tracker(currentNumber, currentSuit) = True
 
     End Sub
 
@@ -27,24 +29,30 @@
 
     Sub Display(tracker(,) As Boolean)
 
-        Dim temp(14, 4) As Boolean
+        Dim temp(12, 3) As Boolean
 
         temp = tracker
-        Dim header() = {"B", "I", "N", "G", "O"}
+        Dim header() = {$"{Chr(3)}", $"{Chr(4)}", $"{Chr(5)}", $"{Chr(6)}"}
         Dim math As Integer
+        Dim antiMath As Integer
         For Each letter In header
             Console.Write(letter.PadLeft(2).PadRight(4))
         Next
         Console.WriteLine()
-        'temp(7, 3) = True
-        'temp(3, 4) = True
-        For row = 0 To 14
-            For column = 0 To 4
+
+        For row = 0 To 12
+            For column = 0 To 3
                 If temp(row, column) Then
-                    math = (column * 15) + (row + 1)
-                    Console.Write($"{math}")
+                    math = (column * 13) + (row + 1)
+                    If math <= 13 Then
+
+                        Console.Write($"{math}".PadLeft(4))
+                    ElseIf 13 < math > 27 Then
+                        antiMath = math - (column + 1)
+
+                    End If
                 Else
-                    Console.Write("X")
+                        Console.Write("X".PadLeft(4))
                 End If
             Next
             Console.WriteLine()
