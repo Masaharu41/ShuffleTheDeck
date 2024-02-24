@@ -13,32 +13,31 @@ Module ShuffleTheDeck
     '[*] Start Deck
     '[*] Draw Card
     '[*] Track Card
-    '[] Display Card #
-    '[] Draw Card 2
+    '[*] Display Card #
+    '[*] Draw Card 2
     '[*] Repeat but no repeat cards can be displayed
-    '[] Restart or shuffle at end
+    '[*] Restart or shuffle at end
 
     Sub Main()
-        'For i = 0 To 254
-        '    Console.WriteLine($"{i} = {Chr(i)}")
-        'Next
-        'Console.Read()
         Dim userInput As String
         Dim tracker(12, 3) As Boolean ' each letter had 15 unique #
         Dim cardsDrawn As Integer = 0
-        Dim message As String = "Hello There!"
+        Dim message As String = "Hello There! Press Enter To Draw Your First Card!"
         Shuffler.NewGame(tracker)
         Do
             Console.Clear()
+            Console.WriteLine("Shuffle The Deck!")
             Shuffler.Display(tracker)
             Console.WriteLine(message)
             userInput = Console.ReadLine()
             If userInput = "n" Then
                 Shuffler.NewGame(tracker)
+                cardsDrawn = 0
             Else
                 If cardsDrawn >= 52 Then
-                    message = "All balls have been drawn"
+                    message = "All cards have been drawn"
                     Shuffler.NewGame(tracker)
+                    cardsDrawn = 0
                 Else
                     Shuffler.DrawCard(tracker)
                     cardsDrawn += 1

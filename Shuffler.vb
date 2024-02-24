@@ -36,7 +36,7 @@ Module Shuffler
         Dim math As Integer
         Dim antiMath As Integer
         For Each letter In header
-            Console.Write(letter.PadLeft(2).PadRight(4))
+            Console.Write(letter.PadLeft(4))
         Next
         Console.WriteLine()
 
